@@ -1,0 +1,96 @@
+<!DOCTYPE html>  <html lang="en">    <head>    
+  <meta charset="UTF-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <title>Computer Quiz</title>    
+  <style>    
+    body {    
+      font-family: Arial, sans-serif;    
+      background: #f4f4f9;    
+      text-align: center;    
+      padding: 20px;    
+    }    
+    h1 {    
+      color: #333;    
+    }    
+    .quiz-box {    
+      background: white;    
+      padding: 20px;    
+      margin: 20px auto;    
+      border-radius: 12px;    
+      max-width: 500px;    
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);    
+    }    
+    button {    
+      margin-top: 15px;    
+      padding: 10px 20px;    
+      border: none;    
+      background: #4CAF50;    
+      color: white;    
+      font-size: 16px;    
+      cursor: pointer;    
+      border-radius: 8px;    
+    }    
+    button:hover {    
+      background: #45a049;    
+    }    
+    .result {    
+      margin-top: 20px;    
+      font-size: 18px;    
+      font-weight: bold;    
+    }    
+  </style>    
+</head>    
+<body>    <h1>Welcome to my Computer Quiz!</h1>    
+  <p>Do you want to play?</p>    
+  <button onclick="startQuiz()">Yes</button>    
+  <button onclick="quitQuiz()">No</button>    <div class="quiz-box" id="quizBox" style="display: none;">    
+    <form id="quizForm">    
+      <p>1. What does CPU stand for?</p>    
+      <input type="text" id="q1" placeholder="Your answer here" required><br><br>  <p>2. What does GPU stand for?</p>    
+  <input type="text" id="q2" placeholder="Your answer here" required><br><br>      <p>3. What does RAM stand for?</p>    
+  <input type="text" id="q3" placeholder="Your answer here" required><br><br>      <p>4. What does PSU stand for?</p>    
+  <input type="text" id="q4" placeholder="Your answer here" required><br><br>    <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+<button type="button" id="restartBtn" style="display:none;" onclick="restartQuiz()">Restart Quiz</button>
+
+</form>    <div class="result" id="result"></div>    </div>    <script>    
+    function startQuiz() {    
+      document.getElementById("quizBox").style.display = "block";    
+    }    function quitQuiz() {    
+  alert("Okay, maybe next time!");    
+}    
+
+function checkAnswers() {    
+  let score = 0;    
+  let totalQuestions = 4;    
+
+  let answers = {    
+    q1: "central processing unit",    
+    q2: "graphics processing unit",    
+    q3: "random access memory",    
+    q4: "power supply unit"    
+  };    
+
+  for (let i = 1; i <= totalQuestions; i++) {    
+    let userAnswer = document.getElementById("q" + i).value.trim().toLowerCase();    
+    if (userAnswer === answers["q" + i]) {    
+      score++;    
+    }    
+  }    
+
+  let percentage = (score / totalQuestions) * 100;    
+  document.getElementById("result").innerHTML =    
+    `You got ${score} out of ${totalQuestions} correct!<br>Score: ${percentage}%`;    
+
+  // Show restart button    
+  document.getElementById("restartBtn").style.display = "inline-block";    
+}    
+
+function restartQuiz() {    
+  document.getElementById("quizForm").reset();  // clear inputs    
+  document.getElementById("result").innerHTML = ""; // clear result    
+  document.getElementById("restartBtn").style.display = "none"; // hide restart button    
+}
+
+</script>  </body>
+
+</html>
